@@ -85,18 +85,20 @@ int line(struct rgb ** graph, int x0,int y0,int x1,int y1,int r,int g,int b){
 }
 
 void picmake(struct rgb ** graph, char * filename){
-	int fd = open(filename, O_WRONLY | O_CREAT,666);
 	FILE *f;
-	f = fopen(file,"w");
+	f = fopen(filename,"w");
 	fprintf(f, "P3 500 500 255\n");
-	for (y = 0; y < 500; y++){
-		for (x = 0; x < 500; x++){
-		
+	for (int y = 0; y < 500; y++){
+		for (int x = 0; x < 500; x++){
+			fprintf(f,"%d %d %d ",graph[y][x].r,graph[y][x].g,graph[y][x].b);	
 		}
+		fprintf(f,"\n");
 	}
+	fclose(f);
 }
 
 int main(){
 	struct rgb ** graph = calloc(sizeof(struct rgb),500*500);
-	
+	line(graph,100,150,400,200,255,255,255);
+	picmake(graph,"pic.ppm");
 }
