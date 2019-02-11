@@ -2,7 +2,6 @@ from display import *
 from draw import *
 
 s = new_screen()
-c = [ 0, 255, 0 ]
 
 for i in range(500):
     for j in range(500):
